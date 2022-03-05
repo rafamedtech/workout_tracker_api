@@ -3,5 +3,6 @@ from .views import getRoutes
 
 urlpatterns = [
     path('', getRoutes.as_view()),
-    path('workouts/', include('workouts.urls'))
+    path('workouts/', include('workouts.urls')),
+    path('users/', include('users.urls')),
 ]

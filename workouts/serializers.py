@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Workout, Exercises
+from users.models import UserProfile
 
 class ExerciseSerializer(serializers.ModelSerializer):
     class Meta:
@@ -8,10 +9,11 @@ class ExerciseSerializer(serializers.ModelSerializer):
 
 class WorkoutSerializer(serializers.ModelSerializer):
     exercises = ExerciseSerializer(many=True)
+    owner = serializers.ReadOnlyField(source='owner.name')
 
     class Meta:
         model = Workout
-        fields = ['id', 'name', 'type', 'exercises']
+        fields = ['id', 'name', 'type', 'exercises', 'owner', 'created_at']
 
     def create(self, validated_data):
         exercises_data = validated_data.pop('exercises')

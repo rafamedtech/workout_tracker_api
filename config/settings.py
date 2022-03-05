@@ -48,11 +48,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'api.apps.ApiConfig',
-    'workouts.apps.WorkoutsConfig',
+    'api',
+    'workouts',
+    'users',
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
 ]
+
+AUTH_USER_MODEL = 'users.UserProfile'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
