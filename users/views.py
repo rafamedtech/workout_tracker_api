@@ -11,11 +11,11 @@ class RegisterUserView(APIView):
     def post(self, request):
         user = UserProfile.objects.get(email=request.data['email'])
 
-        if user:
-            return Response({'error': 'Email already registered'}, status=status.HTTP_400_BAD_REQUEST)
-        else:
+        if not user:
             serializer = UserProfileSerializer(data=request.data)
-            
+        else:
+            return Response({'error': 'Email already registered'}, status=status.HTTP_400_BAD_REQUEST)
+
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
