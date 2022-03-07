@@ -5,7 +5,6 @@ from workouts.models import Workout, Exercises
 from users.models import UserProfile
 from .serializers import WorkoutSerializer
 from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
-from rest_framework.permissions import IsAuthenticated
 
 
 class WorkoutView(APIView):
@@ -13,13 +12,11 @@ class WorkoutView(APIView):
     queryset = Workout.objects.all()
     serializer_class = WorkoutSerializer
     
-    
     def get(self, request, *args, **kwargs):
         workouts = Workout.objects.all()
         serializer = WorkoutSerializer(workouts, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-    permission_classes = [IsAuthenticated]
     def post(self, request, *args, **kwargs):
         data = request.data
         exercises = data['exercises']
@@ -51,7 +48,6 @@ class SingleWorkoutView(APIView):
         serializer = WorkoutSerializer(workout)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-    permission_classes = [IsAuthenticated]
     def put(self, request, pk, *args, **kwargs):
         workout = self.get_workout_by_id(pk)
         data = request.data
@@ -81,7 +77,6 @@ class SingleWorkoutView(APIView):
         serializer = self.serializer_class(workout)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-    permission_classes = [IsAuthenticated]
     def delete(self, request, pk, *args, **kwargs):
         workout = self.get_workout_by_id(pk)
         workout.delete()

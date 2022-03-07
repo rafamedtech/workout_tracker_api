@@ -1,11 +1,17 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import UserProfileSerializer
 from rest_framework.permissions import IsAuthenticated
+from .models import UserProfile
+from .serializers import UserProfileSerializer
 
 class RegisterUserView(APIView):
     def post(self, request):
+        user = UserProfile.objects.get(email=request.data['email'])
+
+        if user:
+            return Response({'error': 'Email already registered'}, status=status.HTTP_400_BAD_REQUEST)
+
         serializer = UserProfileSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
