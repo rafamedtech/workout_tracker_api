@@ -4,8 +4,10 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from .models import UserProfile
 from .serializers import UserProfileSerializer
+from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
 
 class RegisterUserView(APIView):
+    parser_classes = [JSONParser, MultiPartParser, FormParser]
     def post(self, request):
         user = UserProfile.objects.get(email=request.data['email'])
 
