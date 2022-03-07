@@ -19,11 +19,11 @@ class RegisterUserView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class LogoutUserView(APIView):
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
     def post(self, request):
         return Response({'message': 'Logout Sucessful'}, status=status.HTTP_200_OK)
 
 class GetUserView(APIView):
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
     def get(self, request):
         return Response({'user': request.user.name, 'email': request.user.email}, status=status.HTTP_200_OK)
