@@ -35,7 +35,7 @@ SECRET_KEY = 'django-insecure-(9i0erb%ku8fqvphp3h-i2_bp37f)$g0&q$_*1^k#n!%v$e%to
 # SECURITY WARNING: don't run with debug turned on in production!
 
 
-ALLOWED_HOSTS = ['rafamed-workout-tracker.herokuapp.com/']
+ALLOWED_HOSTS = ['rafamed-workout-tracker.herokuapp.com']
 
 
 # Application definition
