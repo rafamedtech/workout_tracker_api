@@ -7,10 +7,10 @@ class getRoutes(APIView):
 
         routes = [
             { 'GET': '/api/workouts/' },
-            { 'GET': '/api/workouts/<int:pk>/' },
+            { 'GET': '/api/workouts/<id>/' },
             { 'POST': '/api/workouts/' },
-            { 'PUT': '/api/workouts/<int:pk>/' },
-            { 'DELETE': '/api/workouts/<int:pk>/' },
+            { 'PUT': '/api/workouts/<id>/' },
+            { 'DELETE': '/api/workouts/<id>/' },
 
         ]
 
