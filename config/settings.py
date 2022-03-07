@@ -116,6 +116,8 @@ CORS_ORIGIN_WHITELIST = (
 
     'http://localhost:3000',
     'http://127.0.0.1:3000',
+
+    'https://workout-tracker-r.netlify.app',
 )
 
 CORS_ALLOW_HEADERS = list(default_headers) + [
@@ -146,26 +148,26 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd86ilbntg2j7ds',
-        'USER': 'jwervepkmkgpxz',
-        'PASSWORD': '7e37e680b0e70bfd39d20e7d4c959b485ef2df425bca5fb7cd04071a31056e76',
-        'HOST': 'ec2-3-209-61-239.compute-1.amazonaws.com',
-        'PORT': '5432',
-    }
-}
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.environ.get('DB_NAME'),
-#         'USER': os.environ.get('DB_USER'),
-#         'PASSWORD': os.environ.get('DB_PASSWORD'),
-#         'HOST': os.environ.get('DB_HOST'),
+#         'NAME': 'd86ilbntg2j7ds',
+#         'USER': 'jwervepkmkgpxz',
+#         'PASSWORD': '7e37e680b0e70bfd39d20e7d4c959b485ef2df425bca5fb7cd04071a31056e76',
+#         'HOST': 'ec2-3-209-61-239.compute-1.amazonaws.com',
 #         'PORT': '5432',
 #     }
 # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': '5432',
+    }
+}
 
 # DATABASES = {
 #     'default': {
