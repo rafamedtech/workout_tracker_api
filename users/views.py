@@ -9,9 +9,9 @@ from rest_framework.parsers import JSONParser, MultiPartParser, FormParser
 class RegisterUserView(APIView):
     parser_classes = [JSONParser, MultiPartParser, FormParser]
     def post(self, request):
-        user = UserProfile.objects.get(email=request.data['email'])
+        # user = UserProfile.objects.get(email=request.data['email'])
 
-        if not user:
+        if not UserProfile.objects.get(email=request.data['email']):
             serializer = UserProfileSerializer(data=request.data)
         else:
             return Response({'error': 'Email already registered'}, status=status.HTTP_400_BAD_REQUEST)
